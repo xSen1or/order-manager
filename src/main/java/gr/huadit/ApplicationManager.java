@@ -5,7 +5,7 @@ public class ApplicationManager {
     Scanner sc = new Scanner(System.in);
     Database conn; 
     InputHelper handler = new InputHelper();
-
+    ContactHandler contact = new ContactHandler(); 
 
     public ApplicationManager() {};
 
@@ -22,12 +22,26 @@ public class ApplicationManager {
 
     public void start() {
         System.out.println("Login Menu:\nUser ID:");
-        while(!handler.getValidInInput(sc.nextLine())) {
-            System.out.println("\nPlease provide a Valid ID.\n");
-            System.out.println("Login Menu:\nUser ID:");
+        String promt = sc.nextLine();
+        int userID;
+        while (true) {
+            try {
+                userID = Integer.parseInt(promt);
+                if (handler.getValidInInput(promt)) break;
+                else System.out.println("\nPlease provide a valid User ID\n");                
+            } catch (NumberFormatException e) {
+                System.err.println(e.getMessage());
+            }
         }
-        
 
-        
+        System.out.println("\nPassword: ");
+        String password = sc.nextLine(); 
+        Login newClientLoginAttempt = new Login(userID, password); 
+        Client ClientX = newClientLoginAttempt.startLogin(); 
+        if (ClientX == null) {
+            
+        } else {
+
+        }
     }
 }

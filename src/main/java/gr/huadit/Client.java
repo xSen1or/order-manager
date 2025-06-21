@@ -6,6 +6,11 @@ public class Client {
     private String email;
     private int userId; 
 
+    public Client(int userId, String password) {
+        this.userId = userId; 
+        this.password = password; 
+    }
+
     public Client(String username, String password, String email, int userId) {
         this.username = username;
         this.password = password;

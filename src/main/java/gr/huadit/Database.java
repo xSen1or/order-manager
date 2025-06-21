@@ -17,7 +17,7 @@ public class Database implements DataManagement {
 
 
     // Search for Specific Product/Client
-    public void searchForClient(int userId) {
+    public Client searchForClient(int userId) {
         if (databaseAvailability()) {
             String query = "SELECT * FROM user_information WHERE userId = " + userId;
             Client targetClient = new Client(userId);
@@ -26,13 +26,22 @@ public class Database implements DataManagement {
                 while (rs.next()) {
                     int userID = rs.getInt("userId");
                     if (targetClient.getUserId() == userID) {
-                        
+                        String username = rs.getString("username");
+                        String password = rs.getString("userPassword");
+                        String email = rs.getString("userEmail");
+                        targetClient.setEmail(email);
+                        targetClient.setPassword(password);
+                        targetClient.setUserId(userID);
+                        targetClient.setUsername(username);
+                        return targetClient;
                     }
                 }
             } catch (SQLException e) {
                 System.err.println("Unable to fetch data for client with id: " + userId);
+                return null;
             }
         }
+        return null;
     }
 
     public void searchForProduct(int targetId) {
@@ -120,6 +129,22 @@ public class Database implements DataManagement {
             e.printStackTrace();
         }
     }
+
+    
+    public boolean findEmail(String target) { 
+        try (Statement stmt = conn.createStatement()) {
+            ResultSet rs = stmt.executeQuery("SELECT * FROM users_information WHERE email = " + target);
+            while(rs.next()) {
+                if (target.equalsIgnoreCase(rs.getString("userMail"))) {
+                    return true;
+                }
+            }
+        } catch (SQLException e) {
+            System.err.println("Database Status: " + e.getSQLState() + "\nUnable to fetch information from database\n" + e.getMessage());
+        }
+        return false; 
+    }   
+
 
     public void disconnect() {
         if (conn != null) {

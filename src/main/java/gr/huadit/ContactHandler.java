@@ -37,6 +37,9 @@ public class ContactHandler {
             Transport.send(message);
             System.out.println("Mail successfully sent");
 
+        } catch (AuthenticationFailedException auth) {
+            System.err.println("Authentication failed: " + auth.getMessage());
+
         } catch (MessagingException e) {
             e.printStackTrace();
         }

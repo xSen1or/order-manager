@@ -17,8 +17,11 @@
   </form>
 
   <div id="message"></div>
-
+  <div id="result"></div>
   <script>
+    fetch("http://localhost:8080/api/hello")
+            .then(res => res.text())
+            .then(console.log);
     const form = document.getElementById('signupForm');
     form.addEventListener('submit', async (e) => {
       e.preventDefault();

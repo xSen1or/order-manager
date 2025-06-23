@@ -22,7 +22,7 @@ form.addEventListener('submit', async (e) => {
 });
 
 document.addEventListener("DOMContentLoaded", async () => {
-    const userInformation = await fetch('http://localhost:8080/api/userInformation', {
+    const userInformation = await fetch('http://localhost:8080/api/getUser', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ username: username, password: password })

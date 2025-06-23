@@ -9,8 +9,7 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/api")
-public class ApiController {
-
+public class LoginController {
     @PostMapping("/login")
      public ResponseEntity<String> login(@RequestBody Map<String, String> payload) {
         Database conn = new Database();

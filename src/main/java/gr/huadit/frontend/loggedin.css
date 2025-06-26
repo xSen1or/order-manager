@@ -1,15 +1,15 @@
 body {
     font-family: Arial, sans-serif;
-    background-color: #f5f7fa;
+    background-color: #67839d;
     margin: 0;
     padding: 0;
 }
 
 .profile-container {
     max-width: 500px;
-    margin: 50px auto;
+    margin: 400px auto;
     background-color: white;
-    padding: 30px 40px;
+    padding: 30px 60px;
     border-radius: 10px;
     box-shadow: 0 2px 10px rgba(0,0,0,0.1);
 }

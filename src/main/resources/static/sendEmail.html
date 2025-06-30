@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Simple Email Sender</title>
+  <link rel="stylesheet" href="css/sendEmail.css">
+  <script src="https://smtpjs.com/v3/smtp.js" defer></script>
+  <script src = "javascript/sendEmail.js"></script>
+  <script src="script.js" defer></script>
+</head>
+<body>
+
+<form class="email-form" id="emailForm">
+  <h2>Send Email</h2>
+
+  <label for="to">To</label>
+  <input type="email" id="to" required>
+
+  <label for="subject">Subject</label>
+  <input type="text" id="subject" required>
+
+  <label for="message">Message</label>
+  <textarea id="message" rows="6" required></textarea>
+
+  <button type="submit">Send Email</button>
+  <div class="status" id="status"></div>
+</form>
+
+</body>
+</html>

@@ -43,7 +43,7 @@ public class ApplicationManager {
         Login newClientLoginAttempt = new Login(userID, password);
         Client ClientX = newClientLoginAttempt.startLogin();
         if (ClientX == null) {
-            
+
         } else {
 
         }

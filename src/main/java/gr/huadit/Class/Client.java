@@ -5,17 +5,19 @@ public class Client {
     private String password;
     private String email;
     private int userId; 
+    private int phone;
 
     public Client(int userId, String password) {
         this.userId = userId; 
         this.password = password; 
     }
 
-    public Client(String username, String password, String email, int userId) {
+    public Client(String username, String password, String email, int userId, int phone) {
         this.username = username;
         this.password = password;
         this.email = email;
         this.userId = userId;
+        this.phone = phone;
     }
 
     public Client(int clientId) {
@@ -32,6 +34,10 @@ public class Client {
 
     public void clientSignUp() {
         
+    }
+
+    public int getPhone() {
+        return phone;
     }
 
     public String getUsername() {

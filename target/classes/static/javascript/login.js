@@ -15,13 +15,14 @@ form.addEventListener('submit', async (e) => {
     });
 
     if (response.ok) {
+        console.log("response okey")
         window.location.href = "loggedin.html";
     } else {
         console.log("Login Failed")
     }
 });
 //
-// document.addEventListener("DOMContentLoaded", async () => {
+// document.addEventListener("DOMContentLaded", async () => {
 //     const username = sessionStorage.getI em("username");
 //     const password = sessionStorage.getItem("password");
 //     const response = await fetch("http://localhost:8080/getUser", {

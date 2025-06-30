@@ -25,7 +25,53 @@ public class Database implements DataManagement {
         return false;
     }
 
-    // Search for Specific Product/Client
+    public int getMaxId() {
+        String sql = "SELECT MAX(userId) AS max_id FROM user_information";
+        try (Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery(sql)) {
+            if (rs.next()) {
+                return rs.getInt("userId"); // gets the value from the column alias "max_id"
+            }
+        } catch (SQLException e) {
+            System.out.printf("SQL Error: %s%n", e);
+        }
+        return -1;
+    }
+    public void appendClient(Client ClientX) {
+        String query = "INSERT INTO user_information (username, userId, userPassword, email, phone) VALUES (?, ?, ?, ?, ?)";
+        try (PreparedStatement ps = conn.prepareStatement(query)) {
+            int lastId = getMaxId();
+            ps.setString(1, ClientX.getUsername());
+            ps.setInt(2, ++lastId);
+            ps.setString(3, ClientX.getPassword());
+            ps.setString(4, ClientX.getEmail());
+            ps.setInt(5, ClientX.getPhone());
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    // Search for Specific Product/Client/Email
+
+    public boolean searchForEmail(String email) {
+        if (databaseAvailability()) {
+            String sql = "SELECT * FROM email WHERE email = ?";
+            try (Statement stmt = conn.createStatement()) {
+                ResultSet rs = stmt.executeQuery(sql);
+                while (rs.next()) {
+                    if (rs.getString("userEmail").equals(email)) {
+                        return true;
+                    }
+                }
+            } catch (SQLException e) {
+                System.out.printf("SQLException: %s%n", e);
+            }
+        }
+        return false;
+    }
+
     public Client searchForClient(int userId) {
         if (databaseAvailability()) {
             String query = "SELECT * FROM user_information WHERE userId = " + userId;
@@ -80,6 +126,7 @@ public class Database implements DataManagement {
         }
     }
 
+
     // Fetch All Products/Clients
     public void fetchAllProducts() {
         if (databaseAvailability()) {
@@ -128,20 +175,6 @@ public class Database implements DataManagement {
         }
     }
 
-    public boolean findEmail(String target) { 
-        try (Statement stmt = conn.createStatement()) {
-            ResultSet rs = stmt.executeQuery("SELECT * FROM users_information WHERE email = " + target);
-            while(rs.next()) {
-                if (target.equalsIgnoreCase(rs.getString("userMail"))) {
-                    return true;
-                }
-            }
-        } catch (SQLException e) {
-            System.err.println("Database Status: " + e.getSQLState() + "\nUnable to fetch information from database\n" + e.getMessage());
-        }
-        return false; 
-    }
-
     public void connect() {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -157,9 +190,6 @@ public class Database implements DataManagement {
             e.printStackTrace();
         }
     }
-
-
-
 
     public void disconnect() {
         if (conn != null) {

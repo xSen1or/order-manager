@@ -25,7 +25,7 @@ public class Signup extends Client {
             if (i == 2) {
                 while (true) {
                     String email = sc.nextLine();
-                    if (conn.findEmail(email)) {
+                    if (conn.searchForEmail(email)) {
                         System.out.println("Email Already exists.\n");
                     } else {
                         values[i] = email; 

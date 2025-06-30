@@ -24,7 +24,7 @@ public class LoginController {
         System.out.println(curr.getUserId());
 
         if(curr.getPassword().equals(password)){
-            Client meClient = new Client(curr.getUsername(), curr.getPassword(), curr.getEmail(), curr.getUserId());
+            Client meClient = new Client(curr.getUsername(), curr.getPassword(), curr.getEmail(), curr.getUserId(), curr.getPhone());
             Gson gson = new Gson();
             try (FileWriter wr = new FileWriter("F:\\Github\\order-manager\\src\\main\\java\\gr\\huadit\\Storage\\storage.json")) {
                 gson.toJson(meClient, wr);

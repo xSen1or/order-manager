@@ -4,27 +4,34 @@
   <meta charset="UTF-8">
   <title>Simple Email Sender</title>
   <link rel="stylesheet" href="css/sendEmail.css">
-  <script src="https://smtpjs.com/v3/smtp.js" defer></script>
-  <script src = "javascript/sendEmail.js"></script>
-  <script src="script.js" defer></script>
+  <script src="javascript/sendEmail.js" defer></script>
 </head>
 <body>
+<div class="center-wrapper">
+  <div class="form-container">
+    <div class="user-info">
+      <h3>Your Account</h3>
+      <p><strong>Name:</strong><span id="username"></span></p>
+      <p><strong>Email:</strong><span id="email"></span></p>
+    </div>
 
-<form class="email-form" id="emailForm">
-  <h2>Send Email</h2>
+    <form class="email-form" id="emailForm">
+      <h2>Send Email</h2>
 
-  <label for="to">To</label>
-  <input type="email" id="to" required>
+      <label for="to">To</label>
+      <input type="email" id="to" required>
 
-  <label for="subject">Subject</label>
-  <input type="text" id="subject" required>
+      <label for="subject">Subject</label>
+      <input type="text" id="subject" required>
 
-  <label for="message">Message</label>
-  <textarea id="message" rows="6" required></textarea>
+      <label for="message">Message</label>
+      <textarea id="message" rows="6" required></textarea>
 
-  <button type="submit">Send Email</button>
-  <div class="status" id="status"></div>
-</form>
-
+      <button type="submit" id="submit-email">Send Email</button>
+      <div class="status" id="status"></div>
+    </form>
+  </div>
+</div>
 </body>
+
 </html>

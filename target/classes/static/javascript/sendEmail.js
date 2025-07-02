@@ -8,10 +8,6 @@ form.addEventListener("submit", async (e) => {
     const subject = document.getElementById("subject").value;
     const body = document.getElementById("message").value;
 
-    const username = sessionStorage.getItem("username")
-    const email = sessionStorage.getItem("email")
-    document.getElementById("username").textContent(username);
-    document.getElementById("email").textContent(email)
     try {
         const response = await fetch("http://localhost:8080/api/sendEmail", {
             method: 'POST',

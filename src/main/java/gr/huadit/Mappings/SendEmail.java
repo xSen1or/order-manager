@@ -40,10 +40,10 @@ public class SendEmail {
             );
             message.setSubject(email.getSubject());
             message.setText(email.getBody());
-
             Transport.send(message);
 
             System.out.println("Email Sent Successfully\n Recipient: " + email.getTo() + "\n Subject: " + email.getSubject() + "\n Body: " + email.getBody());
+            email.addEmail();
             return ResponseEntity.ok().body("Email sent");
 
         } catch (MessagingException e) {

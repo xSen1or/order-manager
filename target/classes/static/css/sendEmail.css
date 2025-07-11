@@ -65,3 +65,32 @@ body {
     color: lawngreen;
     font-weight: bold;
 }
+
+.form-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 800px;
+    margin: 40px auto;
+    gap: 30px;
+}
+.user-info {
+    flex: 1;
+    font-size: 14px;
+    color: #333;
+    padding-right: 20px;
+    border-right: 1px solid #eee;
+}
+
+.user-info h3 {
+    margin-bottom: 15px;
+    color: #007bff;
+}
+
+.user-info p {
+    margin: 8px 0;
+}
